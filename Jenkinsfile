@@ -28,7 +28,7 @@ properties(
 			checks: [
                             [
                                 expectedValue: '^f33$',
-                                field: '$.msg.tag'
+                                field: '$.tag'
                             ]
 			]
                     ]
