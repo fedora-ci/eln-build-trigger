@@ -19,10 +19,18 @@ properties(
 		    providerData: [
                         $class: 'RabbitMQSubscriberProviderData',
                         name: 'RabbitMQ',
+			
                         overrides: [
                             topic: 'org.fedoraproject.prod.buildsys.tag',
                             queue: 'osci-pipelines-queue-12'
-                        ]
+                        ],
+
+			checks: [
+                            [
+                                expectedValue: '^f33$',
+                                field: '$.msg.tag'
+                            ]
+			]
                     ]
                 ]
 	    ]
