@@ -1,8 +1,5 @@
 #!groovy
 
-// @Library('fedora-pipeline-library@prototype') _
-
-
 properties(
     [
         parameters(
@@ -39,9 +36,6 @@ properties(
 )
 
 def msg
-def artifactId
-def additionalArtifactIds
-def allTaskIds = [] as Set
 
 pipeline {
 
@@ -66,7 +60,22 @@ pipeline {
 		    //   "user":"bodhi"
 		    // }
 
-		    echo  msg['name']
+		    assert msg['tag'] == "f33"
+
+		    pkgName = msg['name']
+		    kojiBuildID = msg['build_id'].toString()
+		    
+		    build (
+			job: 'eln-build-pipeline',
+			wait: false,
+			parameters:
+			    [
+			    string(name: 'KOJI_BUILD_ID', value: kojiBuildID),
+			])
+		}
+		script {
+		    currentBuild.description = "${pkgName}: ${kojiBuildID}"
+		    
                 }
             }
         }
