@@ -24,7 +24,7 @@ properties(
 
 			checks: [
                             [
-                                expectedValue: '^f33$',
+                                expectedValue: '^f34$',
                                 field: '$.tag'
                             ]
 			]
