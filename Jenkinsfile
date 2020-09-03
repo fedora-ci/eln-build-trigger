@@ -60,8 +60,6 @@ pipeline {
 		    //   "user":"bodhi"
 		    // }
 
-		    assert msg['tag'] == "f33"
-
 		    pkgName = msg['name']
 		    kojiBuildID = msg['build_id'].toString()
 		    
