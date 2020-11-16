@@ -36,6 +36,10 @@ def additionalArtifactIds
 def allTaskIds = [] as Set
 
 pipeline {
+    options {
+        // Big number of archive tasks made DOS for Jenkins master
+        buildDiscarder(logRotator(daysToKeepStr: '14', numToKeepStr: '500', artifactNumToKeepStr: '100'))
+    }
 
     agent any
 
